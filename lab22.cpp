@@ -1,3 +1,4 @@
+// COMSC 210 | Lab 22 | Niko Dittmar
 #include <iostream>
 using namespace std;
 
@@ -15,7 +16,6 @@ private:
             next = n;
         }
     };
-
     Node* head;
     Node* tail;
 
@@ -100,6 +100,49 @@ public:
         delete temp;
     }
 
+    void delete_pos(int position) {
+        // Ensure position is greater than 0.
+        if (position < 0) {
+            cout << "Position must be >= 0." << endl;
+            return;
+        }
+
+        Node* temp = head;
+
+        // Handle delete head case.
+        if (position == 0) {
+            if (head) {
+                head = temp->next;
+                head->prev = nullptr;
+                delete temp;
+            }
+            return;
+        }
+
+        // Find node at position.
+        for (int i = 0; i < position && temp; ++i)
+            temp = temp->next;
+
+        // Ensure the node exists.
+        if (!temp) {
+            cout << "Invalid position!" << endl;
+            return;
+        }
+
+        if (temp->next) {
+            Node* next = temp->next;
+            temp->next->prev = temp->prev;
+            temp->prev->next = next;
+            delete temp;
+        } else {
+            // Handle delete tail case.
+            tail = temp->prev;
+            temp->prev->next = nullptr;
+            delete temp;
+        }
+
+    }
+
     void print() {
         Node* current = head;
         if (!current) return;
@@ -141,6 +184,15 @@ int main() {
 
     cout << "List backward: ";
     list.print_reverse();
+
+    list.delete_pos(size - 1);
+    list.print();
+
+    list.delete_pos(size - 3);
+    list.print();
+
+    list.delete_pos(0);
+    list.print();
 
     cout << "Deleting list, then trying to print.\n";
     list.~DoublyLinkedList();
