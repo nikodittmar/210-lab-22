@@ -10,6 +10,8 @@ private:
         int data;
         Node* prev;
         Node* next;
+
+        // Constructor
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
             data = val; 
             prev = p;
@@ -23,6 +25,9 @@ public:
     // constructor
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    // push_back() adds a value to the back of the list.
+    // arguments: value - the value to add.
+    // returns: void
     void push_back(int value) {
         Node* newNode = new Node(value);
         if (!tail)  // if there's no tail, the list is empty
@@ -34,6 +39,9 @@ public:
         }
     }
 
+    // push_front() adds a value to the front of the list.
+    // arguments: value - the value to add.
+    // returns: void
     void push_front(int value) {
         Node* newNode = new Node(value);
         if (!head)  // if there's no head, the list is empty
@@ -45,6 +53,9 @@ public:
         }
     }
 
+    // insert_after() adds a value after the specified position in the list.
+    // arguments: value - the value to add, position - the index to add the item after.
+    // returns: void
     void insert_after(int value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
@@ -76,6 +87,9 @@ public:
         temp->next = newNode;
     }
 
+    // delete_val() delete a value from the list. (first occurance)
+    // arguments: value - the value to delete.
+    // returns: void
     void delete_val(int value) {
         if (!head) return; // Empty list
 
@@ -100,6 +114,9 @@ public:
         delete temp;
     }
 
+    // pop_front() removes a value from the front of the list.
+    // arguments: none
+    // returns: void
     void pop_front() {
         Node* temp = head;
         if (temp) {
@@ -113,6 +130,9 @@ public:
         }
     }
 
+    // pop_back() removes a value from the back of the list.
+    // arguments: none
+    // returns: void
     void pop_back() {
         Node* temp = tail;
         if (temp) {
@@ -126,6 +146,9 @@ public:
         }
     }
 
+    // delete_pos() removes a value from a specific position.
+    // arguments: position - the position to remove the item.
+    // returns: void
     void delete_pos(int position) {
         // Ensure position is greater than 0.
         if (position < 0) {
@@ -175,6 +198,9 @@ public:
 
     }
 
+    // print() prints the list in forward order.
+    // arguments: none
+    // returns: void
     void print() {
         Node* current = head;
         if (!current) return;
@@ -185,6 +211,9 @@ public:
         cout << endl;
     }
 
+    // print_reverse() prints the list in reverse order.
+    // arguments: none
+    // returns: void
     void print_reverse() {
         Node* current = tail;
         if (!current) return;
@@ -195,6 +224,7 @@ public:
         cout << endl;
     }
 
+    // Delete the list
     ~DoublyLinkedList() {
         while (head) {
             Node* temp = head;
