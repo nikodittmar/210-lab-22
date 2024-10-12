@@ -100,6 +100,16 @@ public:
         delete temp;
     }
 
+    void pop_front() {
+        delete_pos(0);
+    }
+
+    void pop_back() {
+        if (tail) {
+
+        }
+    }
+
     void delete_pos(int position) {
         // Ensure position is greater than 0.
         if (position < 0) {
@@ -112,9 +122,15 @@ public:
         // Handle delete head case.
         if (position == 0) {
             if (head) {
-                head = temp->next;
-                head->prev = nullptr;
+                if (head == tail) {
+                    head = nullptr;
+                    tail = nullptr;
+                } else {
+                    head = temp->next;
+                    head->prev = nullptr;
+                }
                 delete temp;
+                
             }
             return;
         }
