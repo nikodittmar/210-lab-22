@@ -76,7 +76,7 @@ public:
         temp->next = newNode;
     }
 
-    void delete_node(int value) {
+    void delete_val(int value) {
         if (!head) return; // Empty list
 
         Node* temp = head;
@@ -236,6 +236,27 @@ int main() {
     cout << "Pop back: ";
     list.pop_back();
     list.print();
+
+    cout << "Push back: ";
+    list.push_back(987654321);
+    list.print();
+
+    cout << "Delete val: ";
+    list.delete_val(987654321);
+    list.print();
+
+    cout << "Push front: ";
+    list.push_front(123456789);
+    list.print();
+
+    cout << "Insert after: ";
+    list.insert_after(543, 5);
+    list.print();
+
+    cout << "Delete val: ";
+    list.delete_val(123456789);
+    list.print();
+
 
     cout << "Deleting list, then trying to print.\n";
     list.~DoublyLinkedList();
