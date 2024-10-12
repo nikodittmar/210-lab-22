@@ -101,12 +101,28 @@ public:
     }
 
     void pop_front() {
-        delete_pos(0);
+        Node* temp = head;
+        if (temp) {
+            if (head == tail) {
+                head = tail = nullptr;
+            } else {
+                head = temp->next;
+                head->prev = nullptr;
+            }
+            delete temp;
+        }
     }
 
     void pop_back() {
-        if (tail) {
-
+        Node* temp = tail;
+        if (temp) {
+            if (head == tail) {
+                head = tail = nullptr;
+            } else {
+                tail = temp->prev;
+                tail->next = nullptr;
+            }
+            delete temp;
         }
     }
 
@@ -201,13 +217,24 @@ int main() {
     cout << "List backward: ";
     list.print_reverse();
 
+    cout << "Delete end: ";
     list.delete_pos(size - 1);
     list.print();
 
+    cout << "Delete from middle: ";
     list.delete_pos(size - 3);
     list.print();
 
+    cout << "Delete first: ";
     list.delete_pos(0);
+    list.print();
+
+    cout << "Pop front: ";
+    list.pop_front();
+    list.print();
+
+    cout << "Pop back: ";
+    list.pop_back();
     list.print();
 
     cout << "Deleting list, then trying to print.\n";
